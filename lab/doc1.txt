@@ -1,0 +1,2 @@
+This is a sample document to test out the grep command and it's workings. 
+Web mining lab 1 exercise.
