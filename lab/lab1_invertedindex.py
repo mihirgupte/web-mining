@@ -17,17 +17,23 @@ class InvertedIndex:
         self.get_terms()
         print()
         print("The term index is: ")
-        print("Terms","Doc Id",sep="\t")
+        print("Terms","Doc Id",sep="\t\t")
         for docs in self.term_index:
             for keys,values in docs.items():
-                print(keys,values,sep="\t")
+                if len(keys)<=5:
+                    print(keys,values,sep="\t\t\t")
+                    continue
+                print(keys,values,sep="\t\t")
         self.make_common_term_index()
         print()
         print("Sorted term index is: ")
-        print("Terms","Doc Id",sep="\t")
+        print("Terms","Doc Id",sep="\t\t")
         for key,value in self.common_list.items():
             for i in range(len(value)):
-                print(key,value[i],sep="\t")
+                if len(key)<=5:
+                    print(key,value[i],sep="\t\t\t")
+                    continue
+                print(key,value[i],sep="\t\t")
         print()
         print("The inverted index is: ")
         self.inverted_index()
@@ -49,11 +55,14 @@ class InvertedIndex:
                 self.common_list[keys].append(values)
 
     def inverted_index(self):
-        print("Term","Freq","Postings List",sep="\t")
+        print("Term","Freq","Postings List",sep="\t\t")
         for key in sorted(self.common_list.keys()):
             value = self.common_list[key]
             value = [str(v) for v in value]
             pl = "->".join(value)
-            print(key,len(value),pl,sep="\t")
+            if len(key)<=5:
+                    print(key,len(value),pl,sep="\t\t\t")
+                    continue
+            print(key,len(value),pl,sep="\t\t")
 
-InvertedIndex(4)
+InvertedIndex(4) #enter number of documents as the argument
